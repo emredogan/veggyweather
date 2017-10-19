@@ -18,11 +18,14 @@ let APP_ID = "&appid="
 
 let API_KEY = "ce6a7d2f658ebdbd775c6e15cbb16552"
 
+var CITY_NAME = ""
+
+
 //let UNITS = "&units=metric"
 
-let CURRENT_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?lat=\(Location.sharedInstance.latitude!)&lon=\(Location.sharedInstance.longitude!)&appid=ce6a7d2f658ebdbd775c6e15cbb16552"
+var CURRENT_WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather?lat=\(Location.sharedInstance.latitude!)&lon=\(Location.sharedInstance.longitude!)&appid=ce6a7d2f658ebdbd775c6e15cbb16552"
 
-let FORECAST_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(Location.sharedInstance.latitude!)&lon=\(Location.sharedInstance.longitude!)&cnt=10&appid=ce6a7d2f658ebdbd775c6e15cbb16552"
+var FORECAST_URL = "http://api.openweathermap.org/data/2.5/forecast/daily?lat=\(Location.sharedInstance.latitude!)&lon=\(Location.sharedInstance.longitude!)&cnt=10&appid=ce6a7d2f658ebdbd775c6e15cbb16552"
 
 typealias DownloadComplete = () -> ()
 

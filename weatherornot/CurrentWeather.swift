@@ -71,6 +71,10 @@ class CurrentWeather {
                 
                 if let name = dict["name"] as? String {
                     self._cityName = name.capitalized
+                    if CITY_NAME != "" {
+                        self._cityName = CITY_NAME
+                        
+                    }
                     print(self._cityName)
                 }
                 

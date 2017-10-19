@@ -1,15 +1,18 @@
 PODS:
   - Alamofire (4.5.0)
   - DropDown (2)
+  - GooglePlacesSearchController (0.1.7)
 
 DEPENDENCIES:
   - Alamofire (~> 4.5)
   - DropDown
+  - GooglePlacesSearchController
 
 SPEC CHECKSUMS:
   Alamofire: f28cdffd29de33a7bfa022cbd63ae95a27fae140
   DropDown: 744784d9c9aa505100e942c16acd05430cbb2f0a
+  GooglePlacesSearchController: 0ac4fedf1582d2e44329c417a6eed80ccf62d716
 
-PODFILE CHECKSUM: 38fdb26dc253a5732ace5761516b143b87b76577
+PODFILE CHECKSUM: 57d50cdf71128af67511e7792dfa26697234e1d6
 
 COCOAPODS: 1.2.0

@@ -17,13 +17,10 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
     
     @IBOutlet var mainView: UIView!
     
-    
-    
-    
     @IBOutlet weak var dateLbl: UILabel!
     @IBOutlet weak var currentTempLbl: UILabel!
     
-    @IBOutlet weak var locationLbl: UILabel!
+    @IBOutlet weak var locationBtn: UIButton!
     
     @IBOutlet weak var currentWeatherImage: UIImageView!
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
@@ -59,6 +56,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(WeatherVC.imageTapped(gesture:)))
         
@@ -130,6 +129,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
         
         self.tableView.backgroundColor = UIColor(hex: "e5ecdc")
         
+        locationAuthStatus()
+        
         
         
         
@@ -140,7 +141,30 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        locationAuthStatus()
+        //locationAuthStatus()
+        
+        newLocation()
+        
+    }
+    
+    
+    func newLocation() {
+        
+        print("dogan new location is working")
+        
+        
+        
+        currentWeather.downloadWeatherDetails {
+            
+            
+            
+            
+            self.downloadForecastDate {
+                self.updateMainUI()
+            }
+        }
+        
+        tableView.reloadData()
         
     }
     
@@ -192,8 +216,12 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
                 
                 if let list = dict["list"] as? [Dictionary<String, AnyObject>] {
                     
+                    self.forecasts.removeAll()
+                    
                     for obj in list {
                         let forecast = Forecast(weatherDict: obj)
+                        
+                        
                         self.forecasts.append(forecast)
                         print(obj)
                         
@@ -255,8 +283,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
         currentTempLbl.text = "\(forTailingZero(temp: currentWeather.currentTemp))°C"
         
         currentWeatherTypeLabel.text = currentWeather.weatherType
-        locationLbl.text = currentWeather.cityName
-        
+        locationBtn.setTitle(currentWeather.cityName, for: .normal)        
         
         
         currentWeatherImage.image = UIImage(named: "\((currentWeatherTypeLabel.text)!)")

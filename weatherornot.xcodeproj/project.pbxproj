@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		632975781F98D3F1006887C0 /* LocationVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 632975771F98D3F1006887C0 /* LocationVC.swift */; };
 		637B7C1F1F949ACE00A391DF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B7C1E1F949ACE00A391DF /* Constants.swift */; };
 		637B7C211F949E2000A391DF /* CurrentWeather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 637B7C201F949E2000A391DF /* CurrentWeather.swift */; };
 		63AC14181F90C5C8005E9937 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63AC14171F90C5C8005E9937 /* AppDelegate.swift */; };
@@ -22,6 +23,7 @@
 
 /* Begin PBXFileReference section */
 		3B896CE35D7456D3D3003012 /* Pods-weatherornot.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-weatherornot.debug.xcconfig"; path = "Pods/Target Support Files/Pods-weatherornot/Pods-weatherornot.debug.xcconfig"; sourceTree = "<group>"; };
+		632975771F98D3F1006887C0 /* LocationVC.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocationVC.swift; sourceTree = "<group>"; };
 		637B7C1E1F949ACE00A391DF /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		637B7C201F949E2000A391DF /* CurrentWeather.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CurrentWeather.swift; sourceTree = "<group>"; };
 		63AC14141F90C5C8005E9937 /* weatherornot.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = weatherornot.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -73,6 +75,7 @@
 			children = (
 				63AC14171F90C5C8005E9937 /* AppDelegate.swift */,
 				63AC14191F90C5C8005E9937 /* WeatherVC.swift */,
+				632975771F98D3F1006887C0 /* LocationVC.swift */,
 				63AC141B1F90C5C8005E9937 /* Main.storyboard */,
 				637B7C1E1F949ACE00A391DF /* Constants.swift */,
 				63AC141E1F90C5C9005E9937 /* Assets.xcassets */,
@@ -232,6 +235,7 @@
 				63D808FA1F962DA300AB4AF5 /* WeatherCell.swift in Sources */,
 				637B7C211F949E2000A391DF /* CurrentWeather.swift in Sources */,
 				637B7C1F1F949ACE00A391DF /* Constants.swift in Sources */,
+				632975781F98D3F1006887C0 /* LocationVC.swift in Sources */,
 				63D808F81F96014B00AB4AF5 /* Forecast.swift in Sources */,
 				63D808FC1F96384C00AB4AF5 /* Location.swift in Sources */,
 			);
