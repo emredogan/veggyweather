@@ -87,7 +87,7 @@ class Forecast {
             let unixConvertedDAte = Date(timeIntervalSince1970: date)
             let dateFormatter = DateFormatter()
           //  dateFormatter.dateStyle = .long
-              dateFormatter.dateFormat = "EE, MMMM-d"
+              dateFormatter.dateFormat = "EE, MMMM d"
            // dateFormatter.timeStyle = .none
             self._date = "\(dateFormatter.string(from: unixConvertedDAte))"
             

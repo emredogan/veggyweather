@@ -22,6 +22,12 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
     
     @IBOutlet weak var locationBtn: UIButton!
     
+    let yourAttributes : [String: Any] = [
+        NSFontAttributeName : UIFont(name: "Avenir", size: 17.0)!,
+        NSForegroundColorAttributeName : UIColor.white,
+        NSUnderlineStyleAttributeName : NSUnderlineStyle.styleSingle.rawValue]
+    
+    
     @IBOutlet weak var currentWeatherImage: UIImageView!
     @IBOutlet weak var currentWeatherTypeLabel: UILabel!
     
@@ -59,6 +65,9 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
         
         
         
+        
+        
+        
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(WeatherVC.imageTapped(gesture:)))
         
         // add it to the image view;
@@ -68,7 +77,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
         
         mainView.backgroundColor = UIColor.init(hex: "DCDCDC")
         dropDown.anchorView = colorButton
-        dropDown.dataSource = ["Tomato", "Carrot", "Beetroot", "Default"]
+        dropDown.dataSource = ["Tomato", "Carrot", "Beetroot","Eggplant","Chili Pepper","Corn","Radish","Onion","Cabbage", "Default"]
         
         dropDown.show()
         
@@ -112,6 +121,63 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
                 self.colorButton.setTitle("Choose your veggy",for: .normal)
                 
             }
+            
+            else if item == "Eggplant" {
+                
+                self.topColor.backgroundColor = UIColor(hex: "2B0B30")
+                self.vegetableIcon.image = UIImage(named: "eggplant")
+                
+                self.colorButton.setTitle("Eggplant",for: .normal)
+                
+            }
+            
+            else if item == "Corn" {
+                
+                self.topColor.backgroundColor = UIColor(hex: "E9B200")
+                self.vegetableIcon.image = UIImage(named: "corn")
+                
+                self.colorButton.setTitle("Corn",for: .normal)
+                
+            }
+            
+            else if item == "Chili Pepper" {
+                
+                self.topColor.backgroundColor = UIColor(hex: "C11B17")
+                self.vegetableIcon.image = UIImage(named: "chili")
+                
+                self.colorButton.setTitle("Chili Pepper",for: .normal)
+                
+            }
+            
+            else if item == "Radish" {
+                
+                self.topColor.backgroundColor = UIColor(hex: "D44E80")
+                self.vegetableIcon.image = UIImage(named: "radish")
+                
+                self.colorButton.setTitle("Radish",for: .normal)
+                
+            }
+            
+            else if item == "Onion" {
+                
+                self.topColor.backgroundColor = UIColor(hex: "9e8a61")
+                self.vegetableIcon.image = UIImage(named: "onion")
+                
+                self.colorButton.setTitle("Onion",for: .normal)
+                
+            }
+            
+            else if item == "Cabbage" {
+                
+                self.topColor.backgroundColor = UIColor(hex: "49573F")
+                self.vegetableIcon.image = UIImage(named: "cabbage")
+                
+                self.colorButton.setTitle("Cabbage",for: .normal)
+                
+            }
+
+
+
         }
         
 
@@ -144,6 +210,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
         //locationAuthStatus()
         
         newLocation()
+        
+        
         
     }
     
@@ -283,10 +351,17 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
         currentTempLbl.text = "\(forTailingZero(temp: currentWeather.currentTemp))°C"
         
         currentWeatherTypeLabel.text = currentWeather.weatherType
-        locationBtn.setTitle(currentWeather.cityName, for: .normal)        
+        locationBtn.setTitle(currentWeather.cityName, for: .normal)
+        
+        let attributeString = NSMutableAttributedString(string: "\(currentWeather.cityName)",
+                                                        attributes: yourAttributes)
+        locationBtn.setAttributedTitle(attributeString, for: .normal)
+        
         
         
         currentWeatherImage.image = UIImage(named: "\((currentWeatherTypeLabel.text)!)")
+        
+        
         
         
         
@@ -325,6 +400,8 @@ extension UIColor {
         )
     }
 }
+
+
 
 
 
