@@ -20,6 +20,8 @@ let API_KEY = "ce6a7d2f658ebdbd775c6e15cbb16552"
 
 var CITY_NAME = ""
 
+var CHECK_LOCATION = "0"
+
 
 //let UNITS = "&units=metric"
 

@@ -37,6 +37,8 @@ class LocationVC: UIViewController  {
         controller.didSelectGooglePlace { (place) -> Void in
             print(place.description)
             
+            
+            
             //Dismiss Search
             controller.isActive = false
         }
@@ -84,6 +86,7 @@ class LocationVC: UIViewController  {
             print("dogan\(place.coordinate.latitude)")
             print("dogan\(place.coordinate.longitude)")
             print("dogan name\(place.name)")
+            CHECK_LOCATION = "1"
            
             
             //Dismiss Search

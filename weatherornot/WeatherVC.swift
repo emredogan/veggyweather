@@ -13,6 +13,15 @@ import DropDown
 
 class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CLLocationManagerDelegate {
     
+    let defaults = UserDefaults.standard
+    
+    let colorFieldKeyConstant = "colorFieldKeyName"
+    let veggyColorKeyConstant = "veggyColorKeyName"
+    
+    var veggyColor = ""
+    
+    
+ 
     let dropDown = DropDown()
     
     @IBOutlet var mainView: UIView!
@@ -77,7 +86,7 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
         
         mainView.backgroundColor = UIColor.init(hex: "DCDCDC")
         dropDown.anchorView = colorButton
-        dropDown.dataSource = ["Tomato", "Carrot", "Beetroot","Eggplant","Chili Pepper","Corn","Radish","Onion","Cabbage", "Default"]
+        dropDown.dataSource = ["Tomato", "Carrot", "Beetroot","Eggplant","ChiliPepper","Corn","Radish","Onion","Cabbage", "Default"]
         
         dropDown.show()
         
@@ -86,6 +95,9 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
             print("Selected item: \(item) at index: \(index)")
             
             if item == "Tomato" {
+                
+                self.veggyColor = "ff6347"
+                
                 self.topColor.backgroundColor = UIColor(hex: "ff6347")
                 
                 
@@ -95,6 +107,10 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
                 
                 self.tableView.reloadData()
             } else if item == "Carrot" {
+                
+                self.veggyColor = "EB8921"
+                
+                
                 
                 self.topColor.backgroundColor =  UIColor(hex: "EB8921")
                 
@@ -107,6 +123,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
             } else if item == "Beetroot" {
                 
                 
+                self.veggyColor = "673f45"
+                
                 self.topColor.backgroundColor = UIColor(hex: "673f45")
                 
                 self.vegetableIcon.image = UIImage(named: "beetroot")
@@ -114,6 +132,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
                 self.colorButton.setTitle("Beetroot",for: .normal)
                 
             } else if item == "Default" {
+                
+                self.veggyColor = "88a95b"
                 
                 self.topColor.backgroundColor = UIColor(hex: "88a95b")
                 self.vegetableIcon.image = UIImage(named: "veggy")
@@ -124,6 +144,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
             
             else if item == "Eggplant" {
                 
+                self.veggyColor = "2B0B30"
+                
                 self.topColor.backgroundColor = UIColor(hex: "2B0B30")
                 self.vegetableIcon.image = UIImage(named: "eggplant")
                 
@@ -133,6 +155,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
             
             else if item == "Corn" {
                 
+                self.veggyColor = "E9B200"
+                
                 self.topColor.backgroundColor = UIColor(hex: "E9B200")
                 self.vegetableIcon.image = UIImage(named: "corn")
                 
@@ -140,16 +164,20 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
                 
             }
             
-            else if item == "Chili Pepper" {
+            else if item == "ChiliPepper" {
+                
+                self.veggyColor = "C11B17"
                 
                 self.topColor.backgroundColor = UIColor(hex: "C11B17")
-                self.vegetableIcon.image = UIImage(named: "chili")
+                self.vegetableIcon.image = UIImage(named: "chilipepper")
                 
-                self.colorButton.setTitle("Chili Pepper",for: .normal)
+                self.colorButton.setTitle("ChiliPepper",for: .normal)
                 
             }
             
             else if item == "Radish" {
+                
+                self.veggyColor = "D44E80"
                 
                 self.topColor.backgroundColor = UIColor(hex: "D44E80")
                 self.vegetableIcon.image = UIImage(named: "radish")
@@ -160,6 +188,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
             
             else if item == "Onion" {
                 
+                self.veggyColor = "9e8a61"
+                
                 self.topColor.backgroundColor = UIColor(hex: "9e8a61")
                 self.vegetableIcon.image = UIImage(named: "onion")
                 
@@ -169,15 +199,33 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
             
             else if item == "Cabbage" {
                 
+                self.veggyColor = "49573F"
+                
                 self.topColor.backgroundColor = UIColor(hex: "49573F")
                 self.vegetableIcon.image = UIImage(named: "cabbage")
                 
                 self.colorButton.setTitle("Cabbage",for: .normal)
                 
             }
+            
+            self.defaults.setValue(self.colorButton.currentTitle, forKey: self.colorFieldKeyConstant)
+            self.defaults.setValue(self.veggyColor, forKey: self.veggyColorKeyConstant)
 
 
 
+        }
+        
+       
+        
+        if let textFieldValue = defaults.string(forKey: self.colorFieldKeyConstant) {
+            colorButton.setTitle(textFieldValue, for: .normal)
+            vegetableIcon.image = UIImage(named: "\(textFieldValue.lowercased())")
+            
+            
+        }
+        
+        if let veggyColorValue = defaults.string(forKey: self.veggyColorKeyConstant) {
+            self.topColor.backgroundColor = UIColor(hex: veggyColorValue)
         }
         
 
@@ -188,6 +236,9 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
         locationManager.stopMonitoringSignificantLocationChanges()
         
         
+        
+       
+        
         tableView.delegate = self
         tableView.dataSource = self
         
@@ -195,9 +246,8 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
         
         self.tableView.backgroundColor = UIColor(hex: "e5ecdc")
         
-        locationAuthStatus()
         
-        
+        print("emredogan")
         
         
     }
@@ -207,9 +257,10 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        //locationAuthStatus()
+     //   locationAuthStatus()
         
         newLocation()
+        locationManager.requestWhenInUseAuthorization()
         
         
         
@@ -218,21 +269,31 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
     
     func newLocation() {
         
-        print("dogan new location is working")
+         print("newLoc\(CHECK_LOCATION)")
         
-        
-        
-        currentWeather.downloadWeatherDetails {
+        if CHECK_LOCATION == "1" {
             
+            print("newLoc")
             
-            
-            
-            self.downloadForecastDate {
-                self.updateMainUI()
+            currentWeather.downloadWeatherDetails {
+                
+                
+                
+                
+                self.downloadForecastDate {
+                    self.updateMainUI()
+                }
+                
+                self.tableView.reloadData()
             }
+            
+            
+            
         }
         
-        tableView.reloadData()
+        
+        
+        
         
     }
     
@@ -248,7 +309,10 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
     }
     
     func locationAuthStatus() {
+        
         if CLLocationManager.authorizationStatus() == .authorizedWhenInUse {
+            
+            print("emredogan4")
             
             currentLocation = locationManager.location
             
@@ -271,9 +335,42 @@ class WeatherVC: UIViewController, UITableViewDelegate, UITableViewDataSource,CL
             
         } else {
             locationManager.requestWhenInUseAuthorization()
-            locationAuthStatus()
+            // locationAuthStatus()
         }
+        
+        
+            }
+    
+    
+    func locationManager(_ manager: CLLocationManager, didChangeAuthorization status: CLAuthorizationStatus) {
+        
+        
+        switch status {
+        case .notDetermined:
+            locationManager.requestAlwaysAuthorization()
+            break
+        case .authorizedWhenInUse:
+            print("doganemre")
+            locationAuthStatus()
+            
+            break
+        case .authorizedAlways:
+            print("doganemre")
+            locationManager.startUpdatingLocation()
+            break
+        case .restricted:
+            // restricted by e.g. parental controls. User can't enable Location Services
+            break
+        case .denied:
+            // user denied your app access to Location Services, but can grant access from Settings.app
+            break
+        default:
+            break
+        }
+
     }
+
+
     
     func downloadForecastDate(completed: @escaping DownloadComplete) {
         
